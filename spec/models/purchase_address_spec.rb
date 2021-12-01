@@ -69,6 +69,12 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Phone number is too short")
       end
 
+      it 'phone_numberが12桁以上だと保存できないこと' do
+        @purchase_address.phone_number = '080123456789'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is too long")
+      end
+
       it 'phone_numberが全角数字だと保存できないこと' do
         @purchase_address.phone_number = '０８０１２３４５６７８'
         @purchase_address.valid?

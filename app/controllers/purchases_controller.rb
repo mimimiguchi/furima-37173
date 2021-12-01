@@ -30,7 +30,7 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_home
-    unless current_user.id != @item.user.id && @item.purchase == nil 
+    if current_user.id == @item.user.id || @item.purchase.present? 
       redirect_to root_path
     end
   end
