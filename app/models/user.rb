@@ -4,6 +4,9 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  has_many :items
+  has_many :purchases
         
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'is valid. Include both letters and numbers'}
   validates :nickname, presence: true
@@ -19,7 +22,6 @@ class User < ApplicationRecord
     validates :first_name_kana
   end
   
-  has_many :items
 
   
 
